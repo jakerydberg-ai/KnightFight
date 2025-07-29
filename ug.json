@@ -1,0 +1,110 @@
+[
+    {
+        "template": "Aegis",
+        "custom_name": "Bastion",
+        "stats": {
+            "hp": 260,
+            "atk": 50,
+            "def": 80,
+            "spd": 40
+        },
+        "ability": "Bodyguard",
+        "moves": [
+            "Phalanx",
+            "Iron Brace",
+            "Guard Bash",
+            "Crucible of Metal",
+            "Empowered Strike"
+        ]
+    },
+    {
+        "template": "Aegis",
+        "custom_name": "Rampart",
+        "stats": {
+            "hp": 250,
+            "atk": 70,
+            "def": 80,
+            "spd": 30
+        },
+        "ability": "Reinforced",
+        "moves": [
+            "Empowered Strike",
+            "Crushing Blow",
+            "Royal Aegis",
+            "Iron Brace",
+            "Cutting Blow"
+        ]
+    },
+    {
+        "template": "Boreas",
+        "custom_name": "Winter",
+        "stats": {
+            "hp": 230,
+            "atk": 40,
+            "def": 80,
+            "spd": 60
+        },
+        "ability": "Frozenheart",
+        "moves": [
+            "Blizzard",
+            "Rimefall",
+            "Frozen Slash",
+            "Mists of Borealis",
+            "Avalanche"
+        ]
+    },
+    {
+        "template": "Boreas",
+        "custom_name": "Glacier",
+        "stats": {
+            "hp": 240,
+            "atk": 40,
+            "def": 90,
+            "spd": 40
+        },
+        "ability": "Ice Shield",
+        "moves": [
+            "Blizzard",
+            "Avalanche",
+            "Icicle Spear",
+            "Winter's Embrace",
+            "Frozen Slash"
+        ]
+    },
+    {
+        "template": "Nocturne",
+        "custom_name": "Hex",
+        "stats": {
+            "hp": 190,
+            "atk": 65,
+            "def": 40,
+            "spd": 85
+        },
+        "ability": "Witch Doctor",
+        "moves": [
+            "Malediction",
+            "Eclipse",
+            "Shared Shadow",
+            "Dread Pulse",
+            "Shadow Blade"
+        ]
+    },
+    {
+        "template": "Indra",
+        "custom_name": "Gale",
+        "stats": {
+            "hp": 185,
+            "atk": 80,
+            "def": 38,
+            "spd": 100
+        },
+        "ability": "Grounded",
+        "moves": [
+            "Storm's Wrath",
+            "Static Discharge",
+            "Arcing Rebound",
+            "Unleash The Tempest",
+            "Galvanic Charge"
+        ]
+    }
+]

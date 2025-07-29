@@ -1,0 +1,110 @@
+[
+    {
+        "template": "Sol",
+        "custom_name": "Helios",
+        "stats": {
+            "hp": 195,
+            "atk": 88,
+            "def": 40,
+            "spd": 70
+        },
+        "ability": "Divine Power",
+        "moves": [
+            "Daylight",
+            "Blazing Judgment",
+            "Sunfire Burst",
+            "Consecration",
+            "Sacred Blade"
+        ]
+    },
+    {
+        "template": "Sol",
+        "custom_name": "Apollo",
+        "stats": {
+            "hp": 195,
+            "atk": 98,
+            "def": 40,
+            "spd": 60
+        },
+        "ability": "Last Stand",
+        "moves": [
+            "Sacred Blade",
+            "Blaze of Fury",
+            "Fiery Immolation",
+            "Heavenly Blessing",
+            "Empowered Strike"
+        ]
+    },
+    {
+        "template": "Briarheart",
+        "custom_name": "Thorn",
+        "stats": {
+            "hp": 180,
+            "atk": 90,
+            "def": 45,
+            "spd": 60
+        },
+        "ability": "Piercing Thorns",
+        "moves": [
+            "Onslaught Of Thorns",
+            "Hail of Briars",
+            "Undergrowth Eruption",
+            "Leeching Grasp",
+            "Cutting Blow"
+        ]
+    },
+    {
+        "template": "Briarheart",
+        "custom_name": "Root",
+        "stats": {
+            "hp": 200,
+            "atk": 70,
+            "def": 55,
+            "spd": 50
+        },
+        "ability": "Relentless Growth",
+        "moves": [
+            "Vastwood Surge",
+            "Ensnaring Vines",
+            "Barkskin",
+            "Nature's Reach",
+            "Wrath Of The Ancients"
+        ]
+    },
+    {
+        "template": "Indra",
+        "custom_name": "Tempest",
+        "stats": {
+            "hp": 185,
+            "atk": 90,
+            "def": 38,
+            "spd": 90
+        },
+        "ability": "Tempest Champion",
+        "moves": [
+            "Call Thunder",
+            "Storm's Wrath",
+            "Galvanic Charge",
+            "Eye of the Storm",
+            "Unleash The Tempest"
+        ]
+    },
+    {
+        "template": "Aegis",
+        "custom_name": "Guardian",
+        "stats": {
+            "hp": 270,
+            "atk": 40,
+            "def": 90,
+            "spd": 30
+        },
+        "ability": "Bodyguard",
+        "moves": [
+            "Phalanx",
+            "Iron Brace",
+            "Guard Bash",
+            "Parry",
+            "Crucible of Metal"
+        ]
+    }
+]
