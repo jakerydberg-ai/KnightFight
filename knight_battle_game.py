@@ -47,7 +47,7 @@ class Knight:
     @property
     def attack(self):
         val = self.base_stats["atk"]
-        stage_mod = 1.0 + (self.stat_stages["atk"] * 0.25)
+        stage_mod = 1.0 + (self.stat_stages["atk"] * 0.50)
         val *= stage_mod
         if "weaken" in self.status_effects:
             val *= 0.7
@@ -65,7 +65,7 @@ class Knight:
     @property
     def defense(self):
         val = self.base_stats["def"]
-        stage_mod = 1.0 + (self.stat_stages["def"] * 0.25)
+        stage_mod = 1.0 + (self.stat_stages["def"] * 0.50)
         val *= stage_mod
         if "vulnerable" in self.status_effects:
             val *= 0.7
@@ -78,7 +78,7 @@ class Knight:
     @property
     def speed(self):
         val = self.base_stats["spd"]
-        stage_mod = 1.0 + (self.stat_stages["spd"] * 0.25)
+        stage_mod = 1.0 + (self.stat_stages["spd"] * 0.50)
         val *= stage_mod
         if "slowed" in self.status_effects and self.ability.name != "Grounded":
             val *= 0.5
@@ -117,29 +117,32 @@ class Knight:
         ):
             type_text(f"{self.name} avoided the attack with Eye of the Storm!")
             return 0
-
         damage = unmod_damage
-        if "mists_of_borealis" in self.active_effects:
-            damage = int(damage * 0.5)
-        if self.ability.name == "Reinforced":
-            damage = int(damage * 0.9)
-        if self.ability.name == "Permafrost" and move and move.rampage_turns > 0:
-            damage = int(damage * 0.5)
+        if not ignore_defense:
+            if "mists_of_borealis" in self.active_effects:
+                damage = int(damage * 0.5)
+            if self.ability.name == "Reinforced":
+                damage = int(damage * 0.9)
+            if self.ability.name == "Permafrost" and move and move.rampage_turns > 0:
+                damage = int(damage * 0.5)
 
-        if self.guard > 0:
-            max_reduction_from_cap = int(damage * 0.5)
-            actual_reduction = min(self.guard, max_reduction_from_cap)
-            damage -= actual_reduction
-            guard_depletion = actual_reduction
-            if move and move.guard_multiplier > 1.0:
-                guard_depletion = int(actual_reduction * move.guard_multiplier * 0.25)
-            self.guard -= guard_depletion
-            type_text(f"{self.name}'s Guard reduced the damage by {actual_reduction}!")
-            if self.guard <= 0:
-                self.guard = 0
-                type_text(f"{self.name}'s Guard was broken!")
-        if ignore_defense:
-            unmod_damage
+            if self.guard > 0:
+                max_reduction_from_cap = int(damage * 0.5)
+                actual_reduction = min(self.guard, max_reduction_from_cap)
+                damage -= actual_reduction
+                guard_depletion = actual_reduction
+                if move and move.guard_multiplier > 1.0:
+                    guard_depletion = int(
+                        actual_reduction * move.guard_multiplier * 0.25
+                    )
+                self.guard -= guard_depletion
+                type_text(
+                    f"{self.name}'s Guard reduced the damage by {actual_reduction}!"
+                )
+                if self.guard <= 0:
+                    self.guard = 0
+                    type_text(f"{self.name}'s Guard was broken!")
+
         final_damage = max(1, damage)
         self.hp -= final_damage
 
@@ -154,19 +157,43 @@ class Knight:
 
         return final_damage
 
-    def apply_self_effect(self, effect):
-        if effect == "slowed":
-            self.apply_status("slowed", 2, attacker=self)
-        elif "attack_up" in effect:
+    def apply_self_effect(self, effect, damage_dealt=0):
+        simple_effects = ["slowed", "weaken", "vulnerable", "dazed"]
+        if effect in simple_effects:
+            self.apply_status(effect, 2, attacker=self)
+            return
+        if "recoil" in effect:
             parts = effect.split("_")
-            amount = int(parts[2])
-            self.stat_stages["atk"] = min(6, self.stat_stages["atk"] + amount)
-            type_text(f"{self.name}'s Attack rose!")
-        elif "defense_up" in effect:
-            parts = effect.split("_")
-            amount = int(parts[2])
-            self.stat_stages["def"] = min(6, self.stat_stages["def"] + amount)
-            type_text(f"{self.name}'s Defense rose!")
+            recoil_percent = int(parts[1])
+            recoil_dmg = max(1, int(damage_dealt * (recoil_percent / 100)))
+            type_text(f"{self.name} took {recoil_dmg} in recoil damage!")
+            self.take_damage(recoil_dmg, ignore_defense=True)
+            return
+
+        parts = effect.split("_")
+        i = 0
+        while i < len(parts):
+            stat_name = parts[i]
+            if (i + 2) < len(parts):
+                direction = parts[i + 1]
+                try:
+                    amount = int(parts[i + 2])
+                    stat_key = stat_name[:3]
+                    if direction == "up":
+                        self.stat_stages[stat_key] = min(
+                            6, self.stat_stages[stat_key] + amount
+                        )
+                        type_text(f"{self.name}'s {stat_name.capitalize()} rose!")
+                    elif direction == "down":
+                        self.stat_stages[stat_key] = max(
+                            -6, self.stat_stages[stat_key] - amount
+                        )
+                        type_text(f"{self.name}'s {stat_name.capitalize()} fell!")
+                    i += 3
+                except (ValueError, KeyError):
+                    i += 1
+            else:
+                i += 1
 
     def tick_statuses(self):
         for status in list(self.status_effects.keys()):
@@ -467,6 +494,16 @@ class Battle:
                     except ValueError:
                         print("Invalid input.")
 
+        if move.target_type == "all_adjacent":
+            ally = next(
+                (k for k in owner.active_knights if k != attacker and not k.is_fainted),
+                None,
+            )
+            opponents = [
+                k for k in opponent_player.active_knights if k and not k.is_fainted
+            ]
+            return opponents + ([ally] if ally else [])
+
         possible_targets = [
             k
             for k in opponent_player.active_knights
@@ -495,16 +532,16 @@ class Battle:
             knight.active_effects.pop("invisible", None)
             self.log.append(f"{knight.name} reappeared!")
 
-        if not move.is_protection_move:
-            knight.consecutive_protects = 0
-
         if move.is_protection_move:
-            fail_chance = 1 - (0.5**knight.consecutive_protects)
-            if random.random() < fail_chance:
-                self.log.append(f"{knight.name}'s {move.name}... but it failed!")
-                knight.consecutive_protects = 0
-                return
-            knight.consecutive_protects += 1
+            if move.name != "Mists of Borealis":
+                fail_chance = 1 - (0.5**knight.consecutive_protects)
+                if random.random() < fail_chance:
+                    self.log.append(f"{knight.name}'s {move.name}... but it failed!")
+                    knight.consecutive_protects = 0
+                    return
+                knight.consecutive_protects += 1
+        else:
+            knight.consecutive_protects = 0
 
         if move.name == "Parry":
             knight.is_parrying = True
@@ -544,8 +581,14 @@ class Battle:
 
     def apply_move_effect(self, attacker: Knight, move: Move, target: Knight):
         owner_of_target = self.p1 if target in self.p1.active_knights else self.p2
-        if move.target_type == "all_enemies" and owner_of_target.is_aoe_protected:
-            self.log.append(f"The attack from {attacker} was blocked by a Shield Wall!")
+        if (
+            move.target_type in ["all_enemies", "all_adjacent"]
+            and owner_of_target.is_aoe_protected
+            and target in owner_of_target.active_knights
+        ):
+            self.log.append(
+                f"The attack on {target.name} was blocked by a Shield Wall!"
+            )
             return
 
         if target.is_parrying:

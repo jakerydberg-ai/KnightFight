@@ -15,7 +15,9 @@ class Move:
         target_type="single_enemy",
         effect=None,
         effect_chance=0,
+        effect_duration=3,
         self_effect=None,
+        synergy_effect=None,
         guard_gain=0,
         guard_multiplier=1.0,
         charge_turns=0,
@@ -24,8 +26,6 @@ class Move:
         sets_weather=None,
         priority=0,
         is_protection_move=False,
-        synergy_effect=None,
-        effect_duration=3,
         description="",
     ):
         self.name = name
@@ -35,7 +35,9 @@ class Move:
         self.target_type = target_type
         self.effect = effect
         self.effect_chance = effect_chance
+        self.effect_duration = effect_duration
         self.self_effect = self_effect
+        self.synergy_effect = synergy_effect
         self.guard_gain = guard_gain
         self.guard_multiplier = guard_multiplier
         self.charge_turns = charge_turns
@@ -44,8 +46,6 @@ class Move:
         self.sets_weather = sets_weather
         self.priority = priority
         self.is_protection_move = is_protection_move
-        self.synergy_effect = synergy_effect  # e.g., 'consecration'
-        self.effect_duration = effect_duration
         self.description = description
 
     def __repr__(self):
@@ -255,8 +255,7 @@ ALL_MOVES = {
         target_type="self",
         blocks_aoe=True,
         priority=4,
-        is_protection_move=True,
-        description="Protects the team from moves that hit all targets for one turn. Chance to fail if used consecutively.",
+        description="Protects the team from moves that hit all targets for one turn.",
     ),
     "Swift Strike": Move(
         "Swift Strike",
@@ -384,14 +383,14 @@ ALL_MOVES = {
         effect_chance=10,
         description="A blast of polished light that may lower the target's defense.",
     ),
-    "Overclock": Move(
-        "Overclock",
+    "Iron Stance": Move(
+        "Iron Stance",
         "Steel",
         0,
         100,
         target_type="self",
-        self_effect="attack_up_1_speed_up_2",
-        description="Pushes internals to raise Attack by 1 and Speed by 2 stages.",
+        self_effect="defense_up_2_speed_down_1",
+        description="User takes a defensive stance, raising Defense by 2 but lowering Speed by 1.",
     ),
     "Forge Cannon": Move(
         "Forge Cannon",
@@ -407,7 +406,6 @@ ALL_MOVES = {
         0,
         100,
         target_type="team_synergy",
-        guard_gain=25,
         description="For one turn, if the user's ally is also Steel-type, both gain Guard equal to 25% of their max HP.",
     ),
     # Verdant
@@ -439,8 +437,8 @@ ALL_MOVES = {
         "Verdant",
         80,
         100,
-        self_effect="weaken",
-        description="A wild attack that weakens the user's own attack afterwards.",
+        self_effect="attack_down_1",
+        description="A wild attack that lowers the user's own attack afterwards.",
     ),
     "Undergrowth Eruption": Move(
         "Undergrowth Eruption",
@@ -470,7 +468,7 @@ ALL_MOVES = {
         "Verdant",
         90,
         100,
-        self_effect="vulnerable",
+        self_effect="defense_down_1",
         description="A flurry of blows that leaves the user vulnerable.",
     ),
     "Leeching Grasp": Move(
@@ -582,7 +580,7 @@ ALL_MOVES = {
         "Radiant",
         60,
         100,
-        target_type="all_enemies",
+        target_type="all_adjacent",
         effect="burn",
         effect_chance=30,
         description="A burst of fire that hits all adjacent Knights and may burn them.",
@@ -669,9 +667,11 @@ ALL_MOVES = {
     "Void Warp": Move(
         "Void Warp",
         "Shadow",
-        70,
+        0,
         100,
-        description="Uses the target's Attack stat instead of the user's to calculate damage.",
+        target_type="self",
+        self_effect="attack_up_2_speed_up_2_defense_down_2",
+        description="User draws on forbidden power, sharply raising Attack and Speed but sharply lowering Defense.",
     ),
     "Lingering Ghosts": Move(
         "Lingering Ghosts",
@@ -820,8 +820,8 @@ ALL_MOVES = {
         "Storm",
         55,
         90,
-        target_type="all_enemies",
-        description="Releases a wave of electricity to hit all foes.",
+        target_type="all_adjacent",
+        description="Releases a wave of electricity to hit all adjacent knights.",
     ),
     "Galvanic Charge": Move(
         "Galvanic Charge",
@@ -870,7 +870,7 @@ ALL_MOVES = {
         "Storm",
         60,
         100,
-        target_type="all_enemies",
+        target_type="all_adjacent",
         effect="dazed",
         effect_chance=30,
         description="Hits all adjacent Knights and may daze them.",
@@ -905,6 +905,7 @@ ALL_KNIGHTS = {
             "Steel Plating",
             "Parry",
             "Phalanx",
+            "Iron Stance",
         ],
     ),
     "Briarheart": KnightTemplate(
@@ -959,6 +960,7 @@ ALL_KNIGHTS = {
             "Dark Machinations",
             "Shadow Claw",
             "Shared Shadow",
+            "Void Warp",
         ],
     ),
     "Boreas": KnightTemplate(
