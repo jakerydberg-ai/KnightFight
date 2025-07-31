@@ -1,0 +1,110 @@
+[
+    {
+        "template": "Nocturne",
+        "custom_name": "Dusk",
+        "stats": {
+            "hp": 340,
+            "atk": 70,
+            "def": 40,
+            "spd": 90
+        },
+        "ability": "Witch Doctor",
+        "moves": [
+            "Malediction",
+            "Eclipse",
+            "Shared Shadow",
+            "Dread Pulse",
+            "Shadow Blade"
+        ]
+    },
+    {
+        "template": "Nocturne",
+        "custom_name": "Shade",
+        "stats": {
+            "hp": 330,
+            "atk": 85,
+            "def": 40,
+            "spd": 85
+        },
+        "ability": "Opportunist",
+        "moves": [
+            "Void Warp",
+            "Shadow Claw",
+            "Dark Machinations",
+            "Shadow Blade",
+            "Cutting Blow"
+        ]
+    },
+    {
+        "template": "Indra",
+        "custom_name": "Gale",
+        "stats": {
+            "hp": 345,
+            "atk": 95,
+            "def": 45,
+            "spd": 100
+        },
+        "ability": "Grounded",
+        "moves": [
+            "Storm's Wrath",
+            "Static Discharge",
+            "Arcing Rebound",
+            "Unleash The Tempest",
+            "Galvanic Charge"
+        ]
+    },
+    {
+        "template": "Indra",
+        "custom_name": "Squall",
+        "stats": {
+            "hp": 345,
+            "atk": 85,
+            "def": 45,
+            "spd": 100
+        },
+        "ability": "Tempest Champion",
+        "moves": [
+            "Call Thunder",
+            "Eye of the Storm",
+            "Volt Nova",
+            "Supercharge",
+            "Paralyzing Jolt"
+        ]
+    },
+    {
+        "template": "Nocturne",
+        "custom_name": "Wraith",
+        "stats": {
+            "hp": 330,
+            "atk": 70,
+            "def": 40,
+            "spd": 100
+        },
+        "ability": "Assassin",
+        "moves": [
+            "Entice",
+            "Lingering Ghosts",
+            "Umbral Step",
+            "Cutting Blow",
+            "Empowered Strike"
+        ]
+    },
+    {
+        "template": "Indra",
+        "custom_name": "Zephyr",
+        "stats": {
+            "hp": 345,
+            "atk": 90,
+            "def": 45,
+            "spd": 105
+        },
+        "ability": "Static Charge",
+        "moves": [
+            "Swift Strike",
+            "Stasis Field",
+            "Unleash The Tempest",
+            "Cutting Blow",
+            "Empowered Strike"
+        ]
+    }
+]

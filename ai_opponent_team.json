@@ -1,0 +1,110 @@
+[
+    {
+        "template": "Sol",
+        "custom_name": "Helios",
+        "stats": {
+            "hp": 360,
+            "atk": 100,
+            "def": 50,
+            "spd": 70
+        },
+        "ability": "Divine Power",
+        "moves": [
+            "Daylight",
+            "Blazing Judgment",
+            "Sunfire Burst",
+            "Consecration",
+            "Sacred Blade"
+        ]
+    },
+    {
+        "template": "Sol",
+        "custom_name": "Apollo",
+        "stats": {
+            "hp": 360,
+            "atk": 110,
+            "def": 50,
+            "spd": 60
+        },
+        "ability": "Last Stand",
+        "moves": [
+            "Sacred Blade",
+            "Blaze of Fury",
+            "Fiery Immolation",
+            "Heavenly Blessing",
+            "Empowered Strike"
+        ]
+    },
+    {
+        "template": "Briarheart",
+        "custom_name": "Thorn",
+        "stats": {
+            "hp": 330,
+            "atk": 105,
+            "def": 45,
+            "spd": 60
+        },
+        "ability": "Piercing Thorns",
+        "moves": [
+            "Onslaught Of Thorns",
+            "Hail of Briars",
+            "Undergrowth Eruption",
+            "Leeching Grasp",
+            "Cutting Blow"
+        ]
+    },
+    {
+        "template": "Briarheart",
+        "custom_name": "Root",
+        "stats": {
+            "hp": 330,
+            "atk": 80,
+            "def": 65,
+            "spd": 50
+        },
+        "ability": "Relentless Growth",
+        "moves": [
+            "Vastwood Surge",
+            "Ensnaring Vines",
+            "Barkskin",
+            "Nature's Reach",
+            "Wrath Of The Ancients"
+        ]
+    },
+    {
+        "template": "Sol",
+        "custom_name": "Lux",
+        "stats": {
+            "hp": 360,
+            "atk": 80,
+            "def": 60,
+            "spd": 80
+        },
+        "ability": "Wielder Of Flame",
+        "moves": [
+            "Daylight",
+            "Angelic Cut",
+            "Divine Light",
+            "Swift Strike",
+            "Cutting Blow"
+        ]
+    },
+    {
+        "template": "Briarheart",
+        "custom_name": "Oaken",
+        "stats": {
+            "hp": 330,
+            "atk": 80,
+            "def": 60,
+            "spd": 45
+        },
+        "ability": "Rooted Stance",
+        "moves": [
+            "Vastwood Surge",
+            "Leeching Grasp",
+            "Barkskin",
+            "Cutting Blow",
+            "Empowered Strike"
+        ]
+    }
+]

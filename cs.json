@@ -1,0 +1,110 @@
+[
+    {
+        "template": "Aegis",
+        "custom_name": "Bastion",
+        "stats": {
+            "hp": 465,
+            "atk": 50,
+            "def": 95,
+            "spd": 35
+        },
+        "ability": "Bodyguard",
+        "moves": [
+            "Phalanx",
+            "Iron Brace",
+            "Guard Bash",
+            "Crucible of Metal",
+            "Bulwark Charge"
+        ]
+    },
+    {
+        "template": "Aegis",
+        "custom_name": "Rampart",
+        "stats": {
+            "hp": 450,
+            "atk": 60,
+            "def": 90,
+            "spd": 40
+        },
+        "ability": "Reinforced",
+        "moves": [
+            "Empowered Strike",
+            "Royal Aegis",
+            "Iron Brace",
+            "Iron Stance",
+            "Cutting Blow"
+        ]
+    },
+    {
+        "template": "Boreas",
+        "custom_name": "Winter",
+        "stats": {
+            "hp": 405,
+            "atk": 50,
+            "def": 90,
+            "spd": 50
+        },
+        "ability": "Frozenheart",
+        "moves": [
+            "Blizzard",
+            "Rimefall",
+            "Frozen Slash",
+            "Mists of Borealis",
+            "Avalanche"
+        ]
+    },
+    {
+        "template": "Boreas",
+        "custom_name": "Glacier",
+        "stats": {
+            "hp": 390,
+            "atk": 50,
+            "def": 100,
+            "spd": 40
+        },
+        "ability": "Ice Shield",
+        "moves": [
+            "Blizzard",
+            "Avalanche",
+            "Icicle Spear",
+            "Winter's Embrace",
+            "Frozen Slash"
+        ]
+    },
+    {
+        "template": "Aegis",
+        "custom_name": "Citadel",
+        "stats": {
+            "hp": 480,
+            "atk": 40,
+            "def": 100,
+            "spd": 30
+        },
+        "ability": "Interlocking Plating",
+        "moves": [
+            "Steel Plating",
+            "Parry",
+            "Iron Brace",
+            "Cutting Blow",
+            "Empowered Strike"
+        ]
+    },
+    {
+        "template": "Boreas",
+        "custom_name": "Permafrost",
+        "stats": {
+            "hp": 390,
+            "atk": 60,
+            "def": 80,
+            "spd": 60
+        },
+        "ability": "Permafrost",
+        "moves": [
+            "Blizzard",
+            "Glacial Crash",
+            "Deep Freeze",
+            "Cutting Blow",
+            "Empowered Strike"
+        ]
+    }
+]
